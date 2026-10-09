@@ -73,9 +73,9 @@ button {
     cursor: pointer;
 }
 
-.primary-button {
-    background: #2563eb;
-    color: #ffffff;
+.action-button {
+    background: #007aff;
+    color: #fff;
 }
 
 .secondary-button {
@@ -150,7 +150,7 @@ Chinese
 Burgers"></textarea>
 
 <div class="button-row">
-    <button class="primary-button" onclick="chooseForMe()">
+    <button class="action-button" onclick="chooseForMe()">
         Choose For Me
     </button>
 
@@ -160,7 +160,9 @@ Burgers"></textarea>
 </div>
 
 <div class="result-card">
-    <div class="result-label">My Choice</div>
+    <div class="result-label">
+        My Choice
+    </div>
 
     <div id="result" class="result-placeholder">
         —
@@ -207,4 +209,3 @@ function clearChoices() {
 
 </body>
 </html>
-
