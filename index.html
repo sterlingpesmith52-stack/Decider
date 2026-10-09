@@ -15,15 +15,15 @@ body {
     padding: 20px;
     padding-bottom: 90px;
     font-family: Arial, sans-serif;
-    background: #fff;
-    color: #000;
+    background: #ffffff;
+    color: #000000;
 }
 
 .logo {
     width: 70px;
     height: auto;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 h1 {
@@ -36,7 +36,7 @@ h1 {
 .tagline {
     font-size: 20px;
     line-height: 1.4;
-    margin-bottom: 25px;
+    margin-bottom: 24px;
 }
 
 .label {
@@ -50,9 +50,10 @@ textarea {
     min-height: 180px;
     padding: 12px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #d1d5db;
     border-radius: 8px;
     resize: vertical;
+    font-family: Arial, sans-serif;
 }
 
 .button-row {
@@ -67,24 +68,23 @@ button {
     padding: 6px 12px;
     font-size: 15px;
     font-weight: 600;
+    border: none;
     border-radius: 6px;
     cursor: pointer;
 }
 
 .primary-button {
-    background: #fff;
-    color: #000;
-    border: 2px solid #2563eb;
+    background: #2563eb;
+    color: #ffffff;
 }
 
 .secondary-button {
-    background: #000;
-    color: #fff;
-    border: 2px solid #000;
+    background: #000000;
+    color: #ffffff;
 }
 
 .result-card {
-    border: 1px solid #ddd;
+    border: 1px solid #d1d5db;
     border-radius: 8px;
     padding: 18px;
 }
@@ -92,18 +92,18 @@ button {
 .result-label {
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .result-placeholder {
-    font-size: 15px;
-    color: #777;
+    font-size: 14px;
+    color: #777777;
 }
 
 .result-value {
     font-size: 28px;
     font-weight: 700;
-    color: #000;
+    color: #000000;
 }
 
 .footer {
@@ -111,8 +111,8 @@ button {
     left: 0;
     right: 0;
     bottom: 0;
-    background: #fff;
-    border-top: 1px solid #ddd;
+    background: #ffffff;
+    border-top: 1px solid #d1d5db;
     padding: 12px;
 }
 
@@ -121,8 +121,8 @@ button {
     width: 100%;
     text-align: center;
     text-decoration: none;
-    background: #000;
-    color: #fff;
+    background: #000000;
+    color: #ffffff;
     padding: 12px;
     border-radius: 8px;
     font-weight: 600;
@@ -167,12 +167,6 @@ Burgers"></textarea>
     </div>
 </div>
 
-<div class="footer">
-    YOUR_PURCHASE_URL
-        Buy This Tool
-    </a>
-</div>
-
 <script>
 function chooseForMe() {
     const text = document.getElementById('choices').value;
@@ -183,26 +177,34 @@ function chooseForMe() {
         .filter(choice => choice.length > 0);
 
     if (choices.length < 2) {
-        document.getElementById('result').className = 'result-placeholder';
-        document.getElementById('result').textContent =
-            'Enter at least two choices.';
+        const result = document.getElementById('result');
+        result.className = 'result-placeholder';
+        result.textContent = 'Enter at least two choices.';
         return;
     }
 
     const randomIndex = Math.floor(Math.random() * choices.length);
 
-    document.getElementById('result').className = 'result-value';
-    document.getElementById('result').textContent =
-        choices[randomIndex];
+    const result = document.getElementById('result');
+    result.className = 'result-value';
+    result.textContent = choices[randomIndex];
 }
 
 function clearChoices() {
     document.getElementById('choices').value = '';
 
-    document.getElementById('result').className = 'result-placeholder';
-    document.getElementById('result').textContent = '—';
+    const result = document.getElementById('result');
+    result.className = 'result-placeholder';
+    result.textContent = '—';
 }
 </script>
 
+<div class="footer">
+    #
+        Buy This Tool
+    </a>
+</div>
+
 </body>
 </html>
+
