@@ -1,1 +1,197 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decider</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    padding-bottom: 90px;
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    color: #000000;
+}
+
+.logo {
+    width: 70px;
+    height: auto;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.tool-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.tagline {
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+.label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 180px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+.button-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.primary-button {
+    background: #000000;
+    color: #ffffff;
+}
+
+.secondary-button {
+    background: #e5e5e5;
+    color: #000000;
+}
+
+.result-card {
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.result-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.result-text {
+    font-size: 28px;
+    font-weight: bold;
+    word-wrap: break-word;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ffffff;
+    border-top: 1px solid #dddddd;
+    padding: 12px;
+}
+
+.buy-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    background: #000000;
+    color: #ffffff;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+IMG_1741.jpeg
+
+<div class="tool-title">Decider</div>
+
+<div class="tagline">
+    Can't agree? Let Decider choose.
+</div>
+
+<div class="label">
+    What are you choosing between?
+</div>
+
+<textarea id="choices" placeholder="Pizza
+Mexican
+Chinese
+Burgers"></textarea>
+
+<div class="button-row">
+    <button class="primary-button" onclick="chooseForMe()">
+        Choose For Me
+    </button>
+
+    <button class="secondary-button" onclick="clearChoices()">
+        Clear
+    </button>
+</div>
+
+<div class="result-card">
+    <div class="result-label">My Choice</div>
+    <div class="result-text" id="result">
+        Waiting for a selection...
+    </div>
+</div>
+
+<script>
+function chooseForMe() {
+    const text = document.getElementById('choices').value;
+
+    const choices = text
+        .split('\n')
+        .map(item => item.trim())
+        .filter(item => item.length > 0);
+
+    if (choices.length < 2) {
+        document.getElementById('result').textContent =
+            'Enter at least two choices.';
+        return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * choices.length);
+
+    document.getElementById('result').textContent =
+        choices[randomIndex];
+}
+
+function clearChoices() {
+    document.getElementById('choices').value = '';
+    document.getElementById('result').textContent =
+        'Waiting for a selection...';
+}
+</script>
+
+<div class="footer">
+    purchase.html
+        Buy This Tool
+    </a>
+</div>
+
+</body>
+</html>
