@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuickCounter</title>
+<title>Decider</title>
 
 <style>
 * {
@@ -39,12 +39,28 @@ h1 {
     margin-bottom: 16px;
 }
 
+.label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    resize: none;
+    font-family: Arial, sans-serif;
+}
+
 .button-row {
     display: flex;
     gap: 8px;
     margin-top: 10px;
     margin-bottom: 16px;
-    flex-wrap: wrap;
 }
 
 button {
@@ -58,7 +74,7 @@ button {
 
 .action-button {
     background: #007aff;
-    color: #ffffff;
+    color: #fff;
 }
 
 .secondary-button {
@@ -76,6 +92,11 @@ button {
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 6px;
+}
+
+.result-placeholder {
+    font-size: 14px;
+    color: #777777;
 }
 
 .result-value {
@@ -112,64 +133,78 @@ button {
 
 IMG_1741.jpeg
 
-<h1>QuickCounter</h1>
+<h1>Decider</h1>
 
 <div class="tagline">
-    Count anything quickly and copy the result.
+    Can't agree? Let Decider choose.
+</div>
+
+<div class="label">
+    What are you choosing between?
+</div>
+
+<textarea id="choices" placeholder="Pizza
+Mexican
+Chinese
+Burgers"></textarea>
+
+<div class="button-row">
+    <button class="action-button" onclick="chooseForMe()">
+        Choose For Me
+    </button>
+
+    <button class="secondary-button" onclick="clearChoices()">
+        Clear
+    </button>
 </div>
 
 <div class="result-card">
     <div class="result-label">
-        Current Count
+        My Choice
     </div>
 
-    <div id="counter" class="result-value">
-        0
+    <div id="result" class="result-placeholder">
+        —
     </div>
-</div>
-
-<div class="button-row">
-    <button class="action-button" onclick="increment()">
-        Add One
-    </button>
-
-    <button class="action-button" onclick="copyCount()">
-        Copy
-    </button>
-
-    <button class="secondary-button" onclick="resetCounter()">
-        Reset
-    </button>
 </div>
 
 <script>
-let count = 0;
+function chooseForMe() {
+    const text = document.getElementById('choices').value;
 
-function updateCounter() {
-    document.getElementById('counter').textContent = count;
+    const choices = text
+        .split('\n')
+        .map(choice => choice.trim())
+        .filter(choice => choice.length > 0);
+
+    const result = document.getElementById('result');
+
+    if (choices.length < 2) {
+        result.className = 'result-placeholder';
+        result.textContent = 'Enter at least two choices.';
+        return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * choices.length);
+
+    result.className = 'result-value';
+    result.textContent = choices[randomIndex];
 }
 
-function increment() {
-    count++;
-    updateCounter();
-}
+function clearChoices() {
+    document.getElementById('choices').value = '';
 
-function resetCounter() {
-    count = 0;
-    updateCounter();
-}
-
-function copyCount() {
-    navigator.clipboard.writeText(count.toString());
+    const result = document.getElementById('result');
+    result.className = 'result-placeholder';
+    result.textContent = '—';
 }
 </script>
 
 <div class="footer">
-    payment.html?tool=QuickCounter
+    #
         Buy This Tool
     </a>
 </div>
 
 </body>
 </html>
-
