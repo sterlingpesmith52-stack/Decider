@@ -13,17 +13,18 @@
 body{
     margin:0;
     padding:16px;
-    padding-bottom:85px;
+    padding-bottom:90px;
     font-family:Arial,sans-serif;
     background:#ffffff;
     color:#000000;
 }
 
 .logo{
-    width:70px;
+    width:180px;
+    max-width:100%;
     height:auto;
     display:block;
-    margin-bottom:8px;
+    margin-bottom:12px;
 }
 
 h1{
@@ -50,10 +51,10 @@ textarea{
     min-height:120px;
     padding:10px;
     font-size:15px;
+    font-family:Arial,sans-serif;
     border:1px solid #d1d5db;
     border-radius:8px;
     resize:none;
-    font-family:Arial,sans-serif;
 }
 
 .button-row{
@@ -113,6 +114,8 @@ button{
     background:#ffffff;
     border-top:1px solid #d1d5db;
     padding:10px 12px;
+    display:flex;
+    justify-content:center;
     z-index:1000;
 }
 
@@ -120,11 +123,11 @@ button{
     display:none;
 }
 
-/* Uses EXACTLY the same styling system as the primary action button */
+/* Same styling system as primary action button */
+/* Auto-sized instead of full width */
 
 .buy-button{
-    display:block;
-    width:100%;
+    display:inline-block;
     background:#007aff;
     color:#ffffff;
     text-decoration:none;
@@ -132,9 +135,9 @@ button{
     padding:8px 12px;
     font-size:14px;
     font-weight:600;
-    border:none;
     border-radius:6px;
-    cursor:pointer;
+    white-space:nowrap;
+    min-width:140px;
 }
 </style>
 </head>
@@ -229,12 +232,12 @@ document.addEventListener('focusin', function(event) {
 
 document.addEventListener('focusout', function() {
     setTimeout(function() {
-        const active = document.activeElement;
+        const activeElement = document.activeElement;
 
         if (
-            active.tagName !== 'INPUT' &&
-            active.tagName !== 'TEXTAREA' &&
-            !active.isContentEditable
+            activeElement.tagName !== 'INPUT' &&
+            activeElement.tagName !== 'TEXTAREA' &&
+            !activeElement.isContentEditable
         ) {
             footer.classList.remove('footer-hidden');
         }
