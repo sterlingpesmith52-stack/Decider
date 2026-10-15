@@ -13,7 +13,7 @@
 body {
     margin: 0;
     padding: 16px;
-    padding-bottom: 72px;
+    padding-bottom: 80px;
     font-family: Arial, sans-serif;
     background: #ffffff;
     color: #000000;
@@ -74,7 +74,7 @@ button {
 
 .action-button {
     background: #007aff;
-    color: #fff;
+    color: #ffffff;
 }
 
 .secondary-button {
@@ -113,6 +113,7 @@ button {
     background: #ffffff;
     border-top: 1px solid #d1d5db;
     padding: 10px 12px;
+    z-index: 1000;
 }
 
 .buy-button {
@@ -126,12 +127,16 @@ button {
     border-radius: 8px;
     font-weight: 600;
 }
+
+.footer-hidden {
+    display: none;
+}
 </style>
 </head>
 
 <body>
 
-IMG_1741.jpeg
+<img src="IMG_1741.JPEG" alt="MicroFoundary Logo" class="logo">
 
 <h1>Decider</h1>
 
@@ -168,6 +173,12 @@ Burgers"></textarea>
     </div>
 </div>
 
+<div class="footer" id="footer">
+    <a href="#" class="buy-button">
+        Buy This Tool
+    </a>
+</div>
+
 <script>
 function chooseForMe() {
     const text = document.getElementById('choices').value;
@@ -198,13 +209,33 @@ function clearChoices() {
     result.className = 'result-placeholder';
     result.textContent = '—';
 }
-</script>
 
-<div class="footer">
-    #
-        Buy This Tool
-    </a>
-</div>
+const footer = document.getElementById('footer');
+
+document.addEventListener('focusin', function(event) {
+    if (
+        event.target.tagName === 'INPUT' ||
+        event.target.tagName === 'TEXTAREA' ||
+        event.target.isContentEditable
+    ) {
+        footer.classList.add('footer-hidden');
+    }
+});
+
+document.addEventListener('focusout', function() {
+    setTimeout(() => {
+        const active = document.activeElement;
+
+        if (
+            active.tagName !== 'INPUT' &&
+            active.tagName !== 'TEXTAREA' &&
+            !active.isContentEditable
+        ) {
+            footer.classList.remove('footer-hidden');
+        }
+    }, 100);
+});
+</script>
 
 </body>
 </html>
